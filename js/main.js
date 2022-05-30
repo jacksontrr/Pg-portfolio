@@ -122,7 +122,7 @@ function bodyScrollingToggle() {
   let itemIndex, slideIndex, screenshots;
 
   /* filtrar itens do portfólio */
-  filterContainer.addEventListener("click", (event) => {
+  /* filterContainer.addEventListener("click", (event) => {
     if (
       event.target.classList.contains("filter-item") &&
       !event.target.classList.contains("active")
@@ -144,9 +144,9 @@ function bodyScrollingToggle() {
         }
       });
     }
-  });
+  }); */
 
-  portfolioItemsContainer.addEventListener("click", (event) => {
+  /* portfolioItemsContainer.addEventListener("click", (event) => {
     if (event.target.closest(".portfolio-item-inner")) {
       const portfolioItem = event.target.closest(".portfolio-item-inner")
         .parentElement;
@@ -171,7 +171,7 @@ function bodyScrollingToggle() {
       popupSlideshow();
       popupDetails();
     }
-  });
+  }); */
 
   closeBtn.addEventListener("click", () => {
     popupToggle();
@@ -264,7 +264,7 @@ function bodyScrollingToggle() {
 /* Controle deslizante de depoimento */
 /* Expressão de função imediatamente chamada - usando a função de seta */
 
-(() => {
+/* (() => {
   const sliderContainer = document.querySelector(".testi-slider-container"),
     slides = sliderContainer.querySelectorAll(".testi-item"),
     slideWidth = sliderContainer.offsetWidth,
@@ -310,7 +310,7 @@ function bodyScrollingToggle() {
     sliderContainer.style.marginLeft = -(slideWidth * slideIndex) + "px";
   }
   slider();
-})();
+})(); */
 
 /* Ocultar todas as seções, exceto as ativas */
 
