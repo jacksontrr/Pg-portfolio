@@ -27,30 +27,32 @@ function limparFormulario() {
 }
 
 form.addEventListener('submit', e => {
-    try {
-        e.preventDefault();
-        const email = document.getElementById('email').value;
-        const nome = document.getElementById('nome').value;
-        const assunto = document.getElementById('assunto').value;
-        const mensagem = document.getElementById('mensagem').value;
-        const emailsRef = db.collection('Emails');
-        if (email === '' || nome === '' || assunto === '' || mensagem === '') {
-            alert('Preencha todos os campos!');
-            return;
-        }
-        emailsRef.doc(email).set({
-            email: email,
-            nome: nome,
-            assunto: assunto,
-            mensagem: mensagem,
-            data: new Date()
-        }).then(() => {
-            limparFormulario();
-            alert('Mensagem enviada com sucesso!');
-        }).catch(error => {
-            console.error('Erro ao enviar mensagem:', error);
-        });
-    } catch ( error ) {
-        alert('Erro ao enviar mensagem!', error);
+    e.preventDefault();
+    const email = document.getElementById('email').value;
+    const nome = document.getElementById('nome').value;
+    const assunto = document.getElementById('assunto').value;
+    const mensagem = document.getElementById('mensagem').value;
+    const emailsRef = db.collection('Emails');
+    if (email === '' || nome === '' || assunto === '' || mensagem === '') {
+        modalTitle("Atenção!");
+        modalText("Preencha todos os campos!");
+        openModal();
+        return;
     }
+    emailsRef.doc(email).set({
+        email: email,
+        nome: nome,
+        assunto: assunto,
+        mensagem: mensagem,
+        data: new Date()
+    }).then(() => {
+        limparFormulario();
+        modalTitle("Mensagem enviada com sucesso!");
+        modalText("Em breve entrarei em contato com você! Obrigado!");
+        openModal();
+    }).catch(error => {
+        modalTitle("Erro ao enviar mensagem!");
+        modalText("Atualizer a página e tente novamente. Se o erro persistir, entre em contato.");
+        openModal();
+    });
 });

@@ -326,9 +326,51 @@ function bodyScrollingToggle() {
 // })();
 
 window.addEventListener("load", () => {
-    // preloader
-    document.querySelector(".preloader").classList.add("fade-out");
-    setTimeout(() => {
-        document.querySelector(".preloader").style.display="none";
-        },600)
+  // preloader
+  document.querySelector(".preloader").classList.add("fade-out");
+  setTimeout(() => {
+    document.querySelector(".preloader").style.display = "none";
+  }, 600)
 })
+
+/* Modal */
+
+var modal = document.getElementById("modal");
+
+var modal_content = document.getElementsByClassName("modal-content")[0];
+
+var closeModalBtn = document.getElementsByClassName("close")[0];
+
+closeModalBtn.onclick = function () {
+  closeModal();
+}
+
+window.onclick = function (event) {
+  if (event.target == modal) {
+    closeModal();
+  }
+}
+
+function openModal() {
+  modal.classList.add("fade-out");
+  modal.style.display = "block";
+  modal.classList.remove("fade-out");
+}
+
+function closeModal() {
+  modal_content.classList.add("slide-out");
+  setTimeout(function () {
+    modal.style.display = "none";
+    modal_content.classList.remove("slide-out");
+  }, 500);
+}
+
+function modalTitle(title) {
+  document.getElementById('modal-title').innerHTML = title;
+}
+
+function modalText(text) {
+  document.getElementById('modal-text').innerHTML = text;
+}
+
+/* Modal fim */
