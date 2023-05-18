@@ -3,6 +3,10 @@ const form = document.querySelector('form');
 let firebaseConfig = null;
 let db = null;
 
+
+
+
+
 xhr.onload = function () {
     if (xhr.status === 200) {
         const data = JSON.parse(xhr.responseText);
@@ -56,3 +60,20 @@ form.addEventListener('submit', e => {
         openModal();
     });
 });
+
+window.onload = function () {
+    const ipify = new XMLHttpRequest();
+    ipify.onload = function () {
+        if (ipify.status === 200) {
+            const data = JSON.parse(ipify.responseText);
+            const ip = data.ip;
+            const ipRef = db.collection('IPs');
+            ipRef.doc(ip).set({
+                ip: ip,
+                data: new Date()
+            });
+        }
+    }
+    ipify.open('GET', 'https://api.ipify.org?format=json', true);
+    ipify.send();
+}
